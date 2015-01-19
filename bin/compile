@@ -4,8 +4,12 @@ BUILD_DIR="$1"
 CACHE_DIR="$2"
 ENV_DIR="$3"
 
-curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz -C - --output $CACHE_DIR/vim-7.3.tar.gz
-mkdir $BUILD_DIR/vim && tar xzvf $CACHE_DIR/vim-7.3.tar.gz -C $BUILD_DIR/vim > /dev/null
+VIM_ARCHIVE="$CACHE_DIR/vim-7.3.tar.gz"
+
+if [ ! -f "$VIM_ARCHIVE" ]; then
+    curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz --output $CACHE_DIR/vim-7.3.tar.gz
+fi
+mkdir $BUILD_DIR/vim && tar xzvf $VIM_ARCHIVE -C $BUILD_DIR/vim > /dev/null
 if [ $? -ne 0 ]; then
     >&2 echo "Vim buildpack failed"
     exit 1
