@@ -4,7 +4,7 @@ BUILD_DIR="$1"
 CACHE_DIR="$2"
 ENV_DIR="$3"
 
-curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz -C --output $CACHE_DIR/vim-7.3.tar.gz
+curl https://s3.amazonaws.com/heroku-jvm-buildpack-vi/vim-7.3.tar.gz -C - --output $CACHE_DIR/vim-7.3.tar.gz
 mkdir $BUILD_DIR/vim && tar xzvf vim.tar.gz -C $BUILD_DIR/vim
 NEW_PATH="`cat $ENV_DIR/PATH`:$HOME/vim/bin"
 echo $NEW_PATH > $ENV_DIR/PATH
