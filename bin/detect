@@ -1,3 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# bin/detect
+# heroku inline buildpack
 
-exit 0
+
+exit 0 
